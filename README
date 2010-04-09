@@ -1,0 +1,9 @@
+Circular Shared Memory Buffer
+-----------------------------------
+
+Features:
+1. Circular buffer for shared memory helps to read and write asynchronously.
+2. If a reader or writer does not achieve a fixed frequency, a soft crash can be programmed.
+
+Documentation:
+See /doc or man golem_achshm

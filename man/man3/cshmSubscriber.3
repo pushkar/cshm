@@ -1,0 +1,109 @@
+.TH "cshmSubscriber" 3 "9 Jun 2009" "Doxygen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cshmSubscriber \- The Subscriber Class is used for subscribing data of a circular shared memory buffer channel.  
+
+.PP
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <achshm.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcshmSubscriber\fP (const char *channel_name)"
+.br
+.ti -1c
+.RI "cshm_error \fBopen\fP ()"
+.br
+.RI "\fIThis tries to create a link to the channel buffer. \fP"
+.ti -1c
+.RI "void \fBreset\fP ()"
+.br
+.ti -1c
+.RI "cshm_error \fBgetNext\fP (void *buffer, cshm_buffer_info_t *info)"
+.br
+.ti -1c
+.RI "cshm_error \fBgetLatest\fP (void *buffer, cshm_buffer_info_t *info)"
+.br
+.ti -1c
+.RI "void \fBsetFrequencyErrorCallBack\fP (void(*func)(void), int frequency)"
+.br
+.ti -1c
+.RI "void \fBgetLatest\fP (uint32_t *index, uint64_t *seq)"
+.br
+.RI "\fIGet the latest written frame's index and sequence number. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBlast_time_read\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The Subscriber Class is used for subscribing data of a circular shared memory buffer channel. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "cshmSubscriber::cshmSubscriber (const char * channel_name)"
+.PP
+This is used to create an instance of the subscriber class 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchannel_name\fP Input channel name to map. /dev/shm/channel_name.dat is mapped 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "cshm_error cshmSubscriber::getLatest (void * buffer, cshm_buffer_info_t * info)"
+.PP
+This is used to get the latest stored buffer in the shared circular buffer memory 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuffer\fP Input address to which buffer should be stored 
+.br
+\fIbuffer_size\fP Returns buffer_size written to buffer 
+.br
+\fIindex\fP Returns position of buffer in the circular buffer 
+.br
+\fIsequence\fP Returns sequence number of the current buffer 
+.RE
+.PP
+
+.SS "cshm_error cshmSubscriber::getNext (void * buffer, cshm_buffer_info_t * info)"
+.PP
+This is used to get the next buffer in the shared circular buffer memory. A counter is maintained in this class which decides the next buffer sequence to get 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuffer\fP Input address to which buffer should be stored 
+.br
+\fIbuffer_size\fP Returns buffer_size written to buffer 
+.br
+\fIsequence\fP Returns sequence number of the current buffer 
+.RE
+.PP
+
+.SS "void cshmSubscriber::setFrequencyErrorCallBack (void(*)(void) func, int frequency)"
+.PP
+This function should be used sparingly.This will ensure real timeness of this instance of subscriber. After this function is registered, it is expected that there is a getNext or a getLatest call before every 1/frequency interval. Whenever this function is called and a function func is registered with a frequency. If a timer sees that a call is made later than 1/frequency interval it calls func. It is expected that the user will write an error handler in func to handle and out of frequency error. Needs further testing. While testing do not use usleep. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfunc\fP Input pointer to error function handler 
+.br
+\fIfrequency\fP Input frequency 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen from the source code.

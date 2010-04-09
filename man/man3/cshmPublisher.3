@@ -1,0 +1,61 @@
+.TH "cshmPublisher" 3 "9 Jun 2009" "Doxygen" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+cshmPublisher \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <achshm.h>\fP
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcshmPublisher\fP (const char *channel_name, int _total_frames, size_t _frame_size)"
+.br
+.ti -1c
+.RI "cshm_error \fBopen\fP ()"
+.br
+.RI "\fIThis tries to create a link to the channel buffer. \fP"
+.ti -1c
+.RI "cshm_error \fBset\fP (void *buffer, size_t buffer_size)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The Publisher Class is used for publishing data to a circular shared memory buffer channel. The shared memory resides until the publisher exists. It is destroyed as soon as the Publisher is closed or destroyed. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "cshmPublisher::cshmPublisher (const char * channel_name, int _total_frames, size_t _frame_size)"
+.PP
+This is used to create an instance of the publisher 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIchannel_name\fP Input channel name to map. /dev/shm/channel_name.dat is mapped 
+.br
+\fI_total_frames\fP Input total number of buffers/frames 
+.br
+\fI_frame_size\fP Input maximum frame size 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "cshm_error cshmPublisher::set (void * buffer, size_t buffer_size)"
+.PP
+Set some data in the shared memory buffer 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuffer\fP Input address of buffer to be written 
+.br
+\fIbuffer_size\fP Input size of buffer to be written 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen from the source code.

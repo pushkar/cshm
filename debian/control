@@ -1,0 +1,13 @@
+Source: golemachshm
+Section: system
+Priority: extra
+Maintainer: Pushkar <pushkarkolhe@gmail.com>
+Build-Depends: libc
+Standards-Version: 3.7.3
+Homepage: http://www.golems.org/
+
+Package: golemachshm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Golems ACH SHM package
+
